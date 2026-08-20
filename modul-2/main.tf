@@ -7,26 +7,21 @@ terraform {
   }
 }
 
-variable "location" {
-  type        = string
-  description = "Deployment Location"
-  default     = "West Europe"
-}
 
 provider "azurerm" {
   features {}
   subscription_id = "a3adf20e-4966-4afb-b717-4de1baae6db1"
 }
 
-resource "azurerm_resource_group" "demo" {
-  name     = "rg-demo-jpauseth"
+resource "azurerm_resource_group" "rgsa" {
+  name     = var.rgname
   location = var.location
 }
 
-resource "azurerm_storage_account" "demo" {
-  name                     = "stdemojpauseth"
-  resource_group_name      = azurerm_resource_group.demo.name
-  location                 = azurerm_resource_group.demo.location
+resource "azurerm_storage_account" "sa" {
+  name                     = var.saname
+  resource_group_name      = azurerm_resource_group.rgsa.name
+  location                 = azurerm_resource_group.rgsa.location
   account_tier             = "Standard"
   account_replication_type = "LRS"
 }
