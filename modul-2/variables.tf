@@ -17,3 +17,21 @@ variable "saname" {
   type        = string
   description = "jp storage group"
 }
+
+#comapny name
+variable "company" {
+  type        = string
+  description = "Company name"
+}
+
+#project name
+variable "project" {
+  type        = string
+  description = "Project name"
+}
+
+#...billing?
+variable "billing_code" {
+  type        = string
+  description = "Billing code - identifies which department is charged"
+}
