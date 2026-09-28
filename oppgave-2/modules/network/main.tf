@@ -24,15 +24,17 @@ resource "azurerm_virtual_network" "vnet" {
 }
 
 resource "azurerm_subnet" "subnet" {
-  count                = length(var.subnet_names)
-  name                 = format("snet-%s", var.subnet_names[count.index])
+  for_each = var.subnets
+
+  name                 = format("snet-%s", each.key)
   resource_group_name  = var.rg_name
   virtual_network_name = azurerm_virtual_network.vnet.name
-  address_prefixes     = [var.subnet_prefixes[count.index]]
+  address_prefixes     = [cidrsubnet(var.address_space, 8, each.value)]
 }
 
 resource "azurerm_subnet_network_security_group_association" "snet_nsg" {
-  count                     = length(var.subnet_names)
-  subnet_id                 = azurerm_subnet.subnet[count.index].id
+  for_each = azurerm_subnet.subnet
+
+  subnet_id                 = each.value.id
   network_security_group_id = azurerm_network_security_group.nsg.id
 }

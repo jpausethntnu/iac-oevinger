@@ -29,17 +29,17 @@ variable "pc_name" {
 }
 
 variable "source_net" {
-    type  = string
-    default = "../../modules/network"
+  type    = string
+  default = "../../modules/network"
 }
 
 variable "source_comp" {
-    type  = string
-    default = "../../modules/compute"
+  type    = string
+  default = "../../modules/compute"
 }
 
 variable "environment" {
-  type    = string
+  type = string
 }
 
 variable "owner" {
@@ -48,7 +48,7 @@ variable "owner" {
 }
 
 variable "vm_size" {
-    type = string
+  type = string
 }
 
 
