@@ -13,7 +13,7 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "rg" {
-  name     = var.rg_name
+  name     = format("rg-%s", lower(var.base_name))
   location = var.location
 }
 
