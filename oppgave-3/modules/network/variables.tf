@@ -15,14 +15,8 @@ variable "address_space" {
 }
 
 variable "subnets" {
-  type = map(number)
-
-  description = "Subnettnavn => netnum"
-
-  validation {
-    condition     = length(var.subnets) >= 3
-    error_message = "Det må opprettes minst tre subnett."
-  }
+  type        = map(number)
+  description = "Subnettnavn => netnum innenfor adresserommet"
 }
 
 variable "tags" {
