@@ -16,6 +16,6 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "demo" {
-  name     = "rg-workflow-jps"
-  location = "westeurope"
+  name     = var.rg_name
+  location = var.location
 }
